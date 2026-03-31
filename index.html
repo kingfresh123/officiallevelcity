@@ -19,6 +19,18 @@
         }
         .login-box h1 { color: #ffd700; margin-bottom: 10px; font-size: 32px; }
         .login-box p { color: #ccc; margin-bottom: 25px; }
+
+        /* Circular Logo */
+        .login-logo {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            object-fit: cover;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 15px rgba(212,175,55,.5);
+            display: block;
+        }
+
         .login-box input { width: 100%; padding: 15px; border-radius: 14px; border: 1px solid #444; background: #111; color: #fff; font-size: 15px; margin-bottom: 18px; }
         .login-box input:focus { outline: none; border-color: #d4af37; box-shadow: 0 0 10px rgba(212,175,55,.5); }
         .show-password { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: #ddd; font-size: 14px; }
@@ -78,7 +90,7 @@
 <!-- LOGIN -->
 <div id="loginPage" class="login-page">
     <div class="login-box">
-        <img src="level city.jpg" alt="Level City Logo" class="logo" style="width:80px;height:80px;">
+        <img src="level city.jpg" alt="Level City Logo" class="login-logo">
         <h1>LEVEL CITY</h1>
         <p>Members Camp Portal</p>
 
@@ -107,7 +119,6 @@
     </div>
 
     <div class="main">
-        <!-- DASHBOARD -->
         <div id="overview" class="section">
             <h2>Dashboard Overview</h2>
             <div class="stats">
@@ -118,7 +129,6 @@
             </div>
         </div>
 
-        <!-- MEMBERS -->
         <div id="members" class="section hidden">
             <h2>Members List</h2>
             <table>
@@ -130,7 +140,6 @@
             </table>
         </div>
 
-        <!-- PAYMENTS -->
         <div id="payments" class="section hidden">
             <h2>Payment List</h2>
             <table>
@@ -140,7 +149,6 @@
             </table>
         </div>
 
-        <!-- EVENTS -->
         <div id="events" class="section hidden">
             <h2>Upcoming Events</h2>
             <div class="event-card">
@@ -151,7 +159,6 @@
             </div>
         </div>
 
-        <!-- HISTORY -->
         <div id="history" class="section hidden">
             <h2>Level City Camp History</h2>
             <p>On 8 June 2025, Level City Camp organized its first Peace Walk...</p>
@@ -188,7 +195,6 @@
 
     function logout(){ location.reload(); }
 
-    // Enter key to login
     document.getElementById('password').addEventListener('keypress', function(e){
         if(e.key === 'Enter') login();
     });
