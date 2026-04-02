@@ -1,150 +1,400 @@
+<html>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Level City Camp Portal</title>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background: linear-gradient(135deg, #050505, #111, #2b1d00); color: #fff; }
-
-        /* HIDDEN */
-        .hidden { display: none !important; }
-
-        /* LOGIN PAGE */
-        .login-page { min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .login-box {
-            width: 100%; max-width: 420px; background: rgba(20,20,20,.95); border: 6px solid #d4af37; border-radius: 30px;
-            padding: 40px 30px; text-align: center; box-shadow: 0 0 30px rgba(212,175,55,.35);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-        .login-box h1 { color: #ffd700; margin-bottom: 10px; font-size: 32px; }
-        .login-box p { color: #ccc; margin-bottom: 25px; }
-
-        /* Circular Logo */
+        
+        body {
+            background: linear-gradient(135deg, #050505, #111, #2b1d00);
+            color: #fff;
+        }
+        
+        .hidden {
+            display: none!important;
+        }
+        /* LOGIN */
+        
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(20, 20, 20, .95);
+            border: 6px solid #d4af37;
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, .35);
+        }
+        
         .login-logo {
-            width: 100px; height: 100px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             border: 3px solid #d4af37;
             object-fit: cover;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 0 15px rgba(212,175,55,.5);
+            margin: 0 auto 20px;
             display: block;
         }
-
-        .login-box input { width: 100%; padding: 15px; border-radius: 14px; border: 1px solid #444; background: #111; color: #fff; font-size: 15px; margin-bottom: 18px; }
-        .login-box input:focus { outline: none; border-color: #d4af37; box-shadow: 0 0 10px rgba(212,175,55,.5); }
-        .show-password { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: #ddd; font-size: 14px; }
-        .btn { width: 100%; padding: 15px; border: none; border-radius: 14px; cursor: pointer; font-size: 16px; font-weight: bold;
-            background: linear-gradient(90deg, #d4af37, #ffd700, #a87800); color: #111; transition: .3s; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 0 18px rgba(255,215,0,.6); }
-        #error { margin-top: 15px; color: #ff6b6b; }
-
+        
+        .login-box h1 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .login-box p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 14px;
+            border: 1px solid #444;
+            background: #111;
+            color: #fff;
+            font-size: 15px;
+        }
+        
+        .login-box input:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 12px rgba(212, 175, 55, .45);
+        }
+        
+        .show-password {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(90deg, #d4af37, #ffd700, #a87800);
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 18px rgba(255, 215, 0, .55);
+        }
+        
+        #error {
+            margin-top: 15px;
+            color: #ff6b6b;
+        }
         /* DASHBOARD */
-        #dashboard { display: flex; min-height: 100vh; flex-direction: column; }
-
+        
+        #dashboard {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
         .topbar {
-            display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px;
-            background: linear-gradient(90deg,#080808,#2a1c00,#080808); border-bottom: 2px solid #d4af37;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            background: linear-gradient(90deg, #080808, #2a1c00, #080808);
+            border-bottom: 2px solid #d4af37;
         }
-        .top-logo { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #d4af37; object-fit: cover; flex-shrink:0; }
+        
+        .top-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            object-fit: cover;
+        }
+        
         .top-tab {
-            background: #141414; color: #ffd700; border: 1px solid #d4af37; border-radius: 14px; padding: 10px 12px;
-            font-weight: bold; cursor: pointer; transition: .3s; white-space: nowrap; font-size: 12px;
+            background: #141414;
+            color: #ffd700;
+            border: 1px solid #d4af37;
+            border-radius: 14px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: .3s;
         }
-        .top-tab.active, .top-tab:hover {
-            background: linear-gradient(90deg,#d4af37,#8f6b00); color: #111; box-shadow: 0 0 18px rgba(255,215,0,.5); transform: translateY(-2px);
+        
+        .top-tab:hover,
+        .top-tab.active {
+            background: linear-gradient(90deg, #d4af37, #8f6b00);
+            color: #111;
         }
-
-        /* SECTIONS */
-        .main { padding: 20px; flex:1; overflow-x:auto; }
-        .section { background: rgba(15,15,15,.92); border: 1px solid rgba(212,175,55,.4); border-radius: 24px; padding: 20px; margin-bottom: 20px; }
-        .section h2 { color: #ffd700; margin-bottom: 15px; }
-
-        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 15px; margin-bottom: 20px; }
-        .card { background: rgba(20,20,20,.9); border: 1px solid #d4af37; border-radius: 22px; padding: 15px; box-shadow: 0 10px 25px rgba(0,0,0,.3); }
-        .card h3 { color: #bbb; font-size: 14px; margin-bottom: 8px; }
-        .card h2 { color: #ffd700; font-size: 28px; }
-
-        table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
-        th { background: linear-gradient(90deg,#d4af37,#9f7700); color:#111; padding: 10px; text-align: left; }
-        td { background: #121212; color:#eee; padding: 10px; border-bottom:1px solid #222; }
-        tr:hover td { background:#1b1b1b; }
-
-        .event-card { background: linear-gradient(145deg,#1b1b1b,#302000); border:1px solid #d4af37; border-radius:18px; padding:15px; margin-bottom:15px; }
-        .event-image { width:100%; height:auto; border-radius:12px; border:2px solid #d4af37; margin-bottom:10px; }
-
-        .history-image { width:100%; max-width:500px; border-radius:12px; border:2px solid #d4af37; margin:15px 0; }
-
-        footer { text-align:center; color:#aaa; margin-top:15px; font-size:12px; }
-
-        /* MOBILE */
-        @media(max-width:768px){
-            .stats { grid-template-columns: 1fr; }
-            .topbar { justify-content: center; }
-            .top-tab { font-size: 11px; padding:8px 10px; }
+        
+        .main {
+            padding: 20px;
+        }
+        
+        .section {
+            background: rgba(15, 15, 15, .92);
+            border: 1px solid rgba(212, 175, 55, .4);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .card {
+            background: #141414;
+            border: 1px solid #d4af37;
+            border-radius: 20px;
+            padding: 18px;
+        }
+        
+        .card h3 {
+            color: #bbb;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .card h2 {
+            color: #ffd700;
+            font-size: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        th {
+            background: linear-gradient(90deg, #d4af37, #9f7700);
+            color: #111;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            background: #121212;
+            padding: 12px;
+            border-bottom: 1px solid #222;
+        }
+        
+        tr:hover td {
+            background: #1c1c1c;
+        }
+        
+        .status-paid {
+            color: #4cff7d;
+            font-weight: bold;
+        }
+        /* EVENTS */
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .event-card {
+            background: linear-gradient(145deg, #141414, #2a1c00);
+            border: 2px solid #d4af37;
+            border-radius: 22px;
+            overflow: hidden;
+            transition: .3s;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, .4);
+        }
+        
+        .event-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .event-content {
+            padding: 18px;
+        }
+        
+        .event-content h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .event-content p {
+            color: #ddd;
+            margin-bottom: 8px;
+        }
+        
+        .event-date {
+            display: inline-block;
+            margin-top: 10px;
+            background: linear-gradient(90deg, #d4af37, #ffd700);
+            color: #111;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        
+        .history-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 14px;
+            border: 2px solid #d4af37;
+            margin-top: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            color: #aaa;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        
+        @media(max-width:768px) {
+            .topbar {
+                justify-content: center;
+            }
+            .top-tab {
+                font-size: 11px;
+                padding: 8px 10px;
+            }
+            .event-card img {
+                height: 180px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<!-- LOGIN -->
-<div id="loginPage" class="login-page">
-    <div class="login-box">
-        <img src="level city.jpg" alt="Level City Logo" class="login-logo">
-        <h1>LEVEL CITY</h1>
-        <p>Members Camp Portal</p>
+    <div id="loginPage" class="login-page">
+        <div class="login-box">
+            <img src="level city.jpg" class="login-logo" alt="Logo">
+            <h1>LEVEL CITY</h1>
+            <p>Members Camp Portal</p>
 
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
 
-        <label class="show-password">
+            <label class="show-password">
             <input type="checkbox" onclick="togglePassword()"> Show Password
         </label>
 
-        <button class="btn" onclick="login()">Login</button>
-        <p id="error"></p>
-    </div>
-</div>
-
-<!-- DASHBOARD -->
-<div id="dashboard" class="hidden">
-    <div class="topbar">
-        <img src="level city.jpg" alt="Logo" class="top-logo">
-        <button class="top-tab active" onclick="showSection('overview', this)">📊 Dashboard</button>
-        <button class="top-tab" onclick="showSection('members', this)">👥 Members</button>
-        <button class="top-tab" onclick="showSection('payments', this)">💰 Payments</button>
-        <button class="top-tab" onclick="showSection('events', this)">🎉 Events</button>
-        <button class="top-tab" onclick="showSection('history', this)">📜 History</button>
-        <button class="top-tab" onclick="logout()">🚪 Logout</button>
+            <button class="btn" onclick="login()">Login</button>
+            <p id="error"></p>
+        </div>
     </div>
 
-    <div class="main">
-        <div id="overview" class="section">
-            <h2>Dashboard Overview</h2>
-            <div class="stats">
-                <div class="card"><h3>Total Members</h3><h2>35</h2></div>
-                <div class="card"><h3>Total Revenue</h3><h2>GHS 4,950</h2></div>
-                <div class="card"><h3>Paid Members</h3><h2>33</h2></div>
-                <div class="card"><h3>Upcoming Events</h3><h2>2</h2></div>
+    <div id="dashboard" class="hidden">
+        <div class="topbar">
+            <img src="level city.jpg" class="top-logo" alt="Logo">
+            <button class="top-tab active" onclick="showSection('overview',this)">📊 Dashboard</button>
+            <button class="top-tab" onclick="showSection('members',this)">👥 Members</button>
+            <button class="top-tab" onclick="showSection('payments',this)">💰 Payments</button>
+            <button class="top-tab" onclick="showSection('events',this)">🎉 Events</button>
+            <button class="top-tab" onclick="showSection('history',this)">📜 History</button>
+            <button class="top-tab" onclick="logout()">🚪 Logout</button>
+        </div>
+
+        <div class="main">
+
+            <div id="overview" class="section">
+                <h2>Dashboard Overview</h2>
+                <div class="stats">
+                    <div class="card">
+                        <h3>Total Members</h3>
+                        <h2>35</h2>
+                    </div>
+                    <div class="card">
+                        <h3>Total Revenue</h3>
+                        <h2>GHS 4,950</h2>
+                    </div>
+                    <div class="card">
+                        <h3>Paid Members</h3>
+                        <h2>33</h2>
+                    </div>
+                    <div class="card">
+                        <h3>Upcoming Events</h3>
+                        <h2>4</h2>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div id="members" class="section hidden">
-            <h2>Members List</h2>
-            <table>
-                <tr><th>Name</th><th>Role</th><th>Phone</th></tr>
-                <tr><td>KING FRESH (Razak)</td><td>Accountant</td><td>0597735482</td></tr>
-                <tr><td>Bashit (Fancy)</td><td>MC</td><td>0555295145</td></tr>
-                <tr><td>AUTHENTIC (Majeed)</td><td>Member</td><td>0531216618</td></tr>
-                <tr><td>MINGOS MURDER (Amiinu)</td><td>Member</td><td>+971524938450</td></tr>
-            </table>
-        </div>
+            <div id="members" class="section hidden">
+                <h2>Members List</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                    </tr>
+                    <tr>
+                        <td>KING FRESH (Razak)</td>
+                        <td>Accountant</td>
+                        <td>0597735482</td>
+                    </tr>
+                    <tr>
+                        <td>Bashit (Fancy)</td>
+                        <td>MC</td>
+                        <td>0555295145</td>
+                    </tr>
+                    <tr>
+                        <td>AUTHENTIC (Majeed)</td>
+                        <td>Member</td>
+                        <td>0531216618</td>
+                    </tr>
+                    <tr>
+                        <td>MINGOS MURDER (Amiinu)</td>
+                        <td>Member</td>
+                        <td>+971524938450</td>
+                    </tr>
+                </table>
+            </div>
 
-        <div id="payments" class="section hidden">
-            <h2>Members Payments</h2>
+            <div id="payments" class="section hidden">
+                <h2>Members Payments</h2>
 
-            <div class="payment-box">
-                <h3>First Payment List</h3>
+                <h3 style="color:#ffd700;margin-bottom:10px;">First Payment List</h3>
                 <table>
                     <tr>
                         <th>Name</th>
@@ -177,10 +427,8 @@
                         <td class="status-paid">Paid</td>
                     </tr>
                 </table>
-            </div>
 
-            <div class="payment-box">
-                <h3>Second Payment List</h3>
+                <h3 style="color:#ffd700;margin-bottom:10px;">Second Payment List</h3>
                 <table>
                     <tr>
                         <th>Name</th>
@@ -214,59 +462,116 @@
                     </tr>
                 </table>
             </div>
-        </div>
-    </div>
-</div>
 
-        <div id="events" class="section hidden">
-            <h2>Upcoming Events</h2>
-            <div class="event-card">
-                <img src="jirapa-trip.jpg" alt="Trip To Jirapa Dubia" class="event-image">
-                <h3>Trip To Jirapa Dubia</h3>
-                <p><strong>Date:</strong> 3 Days After Sallah, 2026</p>
-                <p><strong>Location:</strong> Jirapa</p>
+            <div id="events" class="section hidden">
+                <h2>Upcoming Events</h2>
+
+                <div class="events-grid">
+
+                    <div class="event-card">
+                        <img src="jirapa-trip.jpg" alt="Trip To Jirapa Dubia">
+                        <div class="event-content">
+                            <h3>Trip To Jirapa Dubia</h3>
+                            <p><strong>Location:</strong> Jirapa, Upper West Region</p>
+                            <p><strong>Description:</strong> Group trip with sightseeing, fun and camp bonding.</p>
+                            <div class="event-date">3 Days After Sallah - 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <img src="peace-walk-event.jpg" alt="Annual Peace Walk">
+                        <div class="event-content">
+                            <h3>Annual Peace Walk</h3>
+                            <p><strong>Location:</strong> Kumasi</p>
+                            <p><strong>Description:</strong> Peace walk to promote unity and togetherness.</p>
+                            <div class="event-date">12 June 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <img src="football-match.jpg" alt="Football Gala">
+                        <div class="event-content">
+                            <h3>Camp Football Gala</h3>
+                            <p><strong>Location:</strong> Community Park</p>
+                            <p><strong>Description:</strong> Football competition, music, prizes and food.</p>
+                            <div class="event-date">25 July 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <img src="camp-party.jpg" alt="End of Year Party">
+                        <div class="event-content">
+                            <h3>End of Year Party</h3>
+                            <p><strong>Location:</strong> Level City Main Hall</p>
+                            <p><strong>Description:</strong> Big celebration with awards, food and performances.</p>
+                            <div class="event-date">20 December 2026</div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
 
-        <div id="history" class="section hidden">
-            <h2>Level City Camp History</h2>
-            <p>On 8 June 2025, Level City Camp organized its first Peace Walk...</p>
-            <img src="PEACE WALK (1).png" alt="Peace Walk" class="history-image">
-        </div>
+            <div id="history" class="section hidden">
+                <h2>Level City Camp History</h2>
+                <p>
+                    On 8 June 2025, Level City Camp organized its first Peace Walk which brought together members and supporters from different areas. The event marked the beginning of the camp's mission to promote peace, unity and development.
+                </p>
+                <img src="PEACE WALK (1).png" class="history-image" alt="Peace Walk">
+            </div>
 
-        <footer>© 2026 Level City Camp Member Portal | All Rights Reserved</footer>
+            <footer>
+                © 2026 Level City Camp Member Portal | All Rights Reserved
+            </footer>
+
+        </div>
     </div>
-</div>
 
-<script>
-    function login() {
-        const username = document.getElementById('username').value.trim().toLowerCase();
-        const password = document.getElementById('password').value.trim();
-        if(username === 'level city' && password === '1234'){
-            document.getElementById('loginPage').classList.add('hidden');
-            document.getElementById('dashboard').classList.remove('hidden');
-        } else {
-            document.getElementById('error').innerText = 'Invalid Username or Password';
+    <script>
+        function login() {
+            const username = document.getElementById('username').value.trim().toLowerCase();
+            const password = document.getElementById('password').value.trim();
+
+            if (username === 'level city' && password === '1234') {
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('dashboard').classList.remove('hidden');
+            } else {
+                document.getElementById('error').innerText = 'Invalid Username or Password';
+            }
         }
-    }
 
-    function togglePassword() {
-        const password = document.getElementById('password');
-        password.type = password.type === 'password' ? 'text' : 'password';
-    }
+        function togglePassword() {
+            const password = document.getElementById('password');
+            password.type = password.type === 'password' ? 'text' : 'password';
+        }
 
-    function showSection(id, button){
-        document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
-        document.getElementById(id).classList.remove('hidden');
-        document.querySelectorAll('.top-tab').forEach(btn => btn.classList.remove('active'));
-        if(button) button.classList.add('active');
-    }
+        function showSection(id, button) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
 
-    function logout(){ location.reload(); }
+            document.getElementById(id).classList.remove('hidden');
 
-    document.getElementById('password').addEventListener('keypress', function(e){
-        if(e.key === 'Enter') login();
-    });
-</script>
+            document.querySelectorAll('.top-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            if (button) {
+                button.classList.add('active');
+            }
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+    </script>
+
 </body>
+
 </html>
+```
